@@ -18,8 +18,17 @@ void revstr(char *str1)
 }
 char *print_any_base(unsigned long num, unsigned int base)
 {
+    if (base > 36)
+    {
+        printf("Illegal base\n");
+        return NULL;
+    }
     char *returnStr = (char *)malloc(sizeof(char) * 15);
-
+    if (num == 0)
+    {
+        returnStr[0] = '0';
+        return returnStr;
+    }
     int i = 0;
 
     while (num > 0)
@@ -30,7 +39,7 @@ char *print_any_base(unsigned long num, unsigned int base)
 
         if (remainder > 9)
         {
-            c = (65 + (remainder - 10)) + '0';
+            c = (65 + (remainder - 10)) + '\0';
         }
         else
         {
@@ -47,6 +56,7 @@ char *print_any_base(unsigned long num, unsigned int base)
 
 int main()
 {
+    // problem 1
     unsigned long test = 1234;
     unsigned int base = 16;
     char *result = print_any_base(test, base);
