@@ -72,6 +72,40 @@ unsigned int count_vowels(char *str)
     }
     return numVowels;
 }
+
+char *reverse_words(char *str)
+{
+    if (str[0] == '\0')
+        return "";
+    char **wordList;
+    int i = 0;
+    int wordListIndex = 0;
+    while (str[i] != '\0')
+    {
+        int k = 0;
+        char *currentStr;
+        while (str[i] != ' ' || str[i] != '\0')
+        {
+            currentStr[k] = str[i];
+            k++;
+            i++;
+        }
+        i++;
+        wordList[wordListIndex] = currentStr;
+        wordListIndex++;
+    }
+    char *returnStr;
+    int size = sizeof(wordList) / sizeof(wordList[0]);
+    returnStr = wordList[0];
+    for (int m = 1; m < size; m++)
+    {
+        char *space = " ";
+        strncat(returnStr, space, 1);
+        strncat(returnStr, wordList[1], 100);
+    }
+    return returnStr;
+}
+
 int main()
 {
     /*
@@ -83,8 +117,15 @@ int main()
     printf("result is %s\n", result);
     free(result);
     */
+    /*
     // problem 2
     char *p2str = "aeiouAEIOU";
     unsigned int p2result = count_vowels(p2str);
     printf("%i\n", p2result);
+    */
+
+    // problem 3
+    char *p3str = "Hello World";
+    char *p3result = reverse_words(p3str);
+    printf("%s\n", p3result);
 }
