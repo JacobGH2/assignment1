@@ -18,12 +18,13 @@ void revstr(char *str1)
 }
 char *print_any_base(unsigned long num, unsigned int base)
 {
+
+    char *returnStr = (char *)malloc(sizeof(char) * 15);
     if (base > 36)
     {
         printf("Illegal base\n");
         return NULL;
     }
-    char *returnStr = (char *)malloc(sizeof(char) * 15);
     if (num == 0)
     {
         returnStr[0] = '0';
@@ -54,12 +55,36 @@ char *print_any_base(unsigned long num, unsigned int base)
     return returnStr;
 }
 
+unsigned int count_vowels(char *str)
+{
+
+    int numVowels = 0;
+    for (int i = 0; i < strlen(str); i++)
+    {
+        if (str[i] == 'a' || str[i] == 'e' ||
+            str[i] == 'i' || str[i] == 'o' ||
+            str[i] == 'u' || str[i] == 'A' ||
+            str[i] == 'E' || str[i] == 'I' ||
+            str[i] == 'O' || str[i] == 'U')
+        {
+            numVowels++;
+        }
+    }
+    return numVowels;
+}
 int main()
 {
+    /*
     // problem 1
     unsigned long test = 1234;
-    unsigned int base = 16;
+    unsigned int base = 37; // come back for free
     char *result = print_any_base(test, base);
 
     printf("result is %s\n", result);
+    free(result);
+    */
+    // problem 2
+    char *p2str = "aeiouAEIOU";
+    unsigned int p2result = count_vowels(p2str);
+    printf("%i\n", p2result);
 }
